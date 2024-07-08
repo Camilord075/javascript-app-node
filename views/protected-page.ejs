@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Protegido</title>
+    </head>
+    <body>
+        <h1>Hola <%= username %>!</h1>
+        <h2>Este contenido esta protegido</h2>
+        <button id="close-session-protected">Cerrar sesión</button>
+    </body>
+    <script>
+        const $ = el => document.querySelector(el)
+
+        const logoutButton = $('#close-session-protected')
+
+        logoutButton?.addEventListener('click', e => {
+            e.preventDefault()
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then (res => {
+                    console.log(res)
+                    window.location.href = '/'
+                })
+        })
+    </script>
+</html>
