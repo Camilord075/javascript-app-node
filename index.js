@@ -86,12 +86,10 @@ app.get('/protected', (req, res) => {
     res.render('protected-page', user)
 })
 
-app.get('/users/:user', async(req, res) => {
-    const user = await UserRepository.loginWithDatabase({ username: req.params.user, password: "Cami0707" })
+app.get('/users', async(req, res) => {
+    const users = await DBMan.getAll();
 
-    console.log(user._id)
-
-    res.send(user)
+    res.render('users', { 'users': users })
 })
 
 app.listen(PORT, () => {

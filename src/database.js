@@ -25,4 +25,10 @@ export class DBMan {
 
         return rows
     }
+
+    static async getAll () {
+        const [rows] = await pool.query('SELECT * FROM users')
+
+        return rows
+    }
 }
